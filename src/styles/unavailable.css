@@ -1,0 +1,80 @@
+/* Экран «видео не получилось» и заглушки загрузки. */
+
+.unavailable {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: var(--space-gutter);
+  text-align: center;
+}
+
+.unavailable__title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.unavailable__subtitle {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-muted);
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.unavailable__text {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.unavailable__text-skeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Заглушка: светлее фона и мягко мигает. */
+.skeleton {
+  background: rgba(255, 255, 255, 0.1);
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Появление контента на месте заглушки. */
+.fade-in {
+  animation: fade-in 350ms ease both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    opacity: 0.7;
+  }
+  .fade-in {
+    animation-duration: 1ms;
+  }
+}

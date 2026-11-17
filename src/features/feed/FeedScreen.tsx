@@ -1,16 +1,15 @@
 import { Screen } from '../../shared/ui/Screen';
-import { appConfig } from '../../config/app';
 import { SideMenuButton } from '../menu/SideMenuButton';
 import { RecordButton } from '../recorder/RecordButton';
+import { FeedUnavailable } from './ui/FeedUnavailable';
 
-// Лента открывается сразу. Данных пока нет, поэтому показываем пустое состояние.
+// Лента открывается сразу. Пока видео не подключены, показываем экран
+// «не удалось получить видео». Когда появятся данные, здесь будет выбор состояния.
 export function FeedScreen() {
   return (
     <Screen>
       <SideMenuButton />
-      <div className="feed-empty">
-        <p>{appConfig.emptyFeedText}</p>
-      </div>
+      <FeedUnavailable />
       <RecordButton />
     </Screen>
   );
