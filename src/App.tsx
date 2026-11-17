@@ -1,11 +1,11 @@
 import { FeedScreen } from './features/feed/FeedScreen';
 
-// Пока единственный экран — лента. Вход, профиль и настройки добавятся позже,
-// каждый в своей папке внутри features/.
+// Пока данных нет, лента показывает экран видео. Чтобы увидеть экран ошибки,
+// поставьте status="unavailable".
 export function App() {
   return (
     <div className="app">
-      <FeedScreen />
+      <FeedScreen status="video" />
     </div>
   );
 }

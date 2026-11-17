@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 import { t } from '../../../shared/lib/i18n';
+import { lightHaptic } from '../../../shared/lib/haptics';
 import { Skeleton } from '../../../shared/ui/Skeleton';
+import { loadVideo } from '../api/loadVideo';
 
 // Один из трёх случайных роликов. Каждый загружается отдельным чанком,
 // поэтому пока он не готов, показываем заглушку.
@@ -13,10 +15,15 @@ const ANIMATION_LOADERS = [
 
 const MEDIA_SIZE = 140;
 
+interface FeedUnavailableProps {
+  onRetrySuccess?: () => void;
+}
+
 // Экран, когда видео получить не удалось: нет контента или нет соединения.
-export function FeedUnavailable() {
+export function FeedUnavailable({ onRetrySuccess }: FeedUnavailableProps) {
   const [index] = useState(() => Math.floor(Math.random() * ANIMATION_LOADERS.length));
   const [animation, setAnimation] = useState<object | null>(null);
+  const [isRetrying, setIsRetrying] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -27,6 +34,17 @@ export function FeedUnavailable() {
       cancelled = true;
     };
   }, [index]);
+
+  async function handleRetry() {
+    lightHaptic();
+    setIsRetrying(true);
+    const success = await loadVideo();
+    if (success) {
+      onRetrySuccess?.();
+    } else {
+      setIsRetrying(false);
+    }
+  }
 
   const isReady = animation !== null;
 
@@ -52,6 +70,16 @@ export function FeedUnavailable() {
           <div className="fade-in">
             <h2 className="unavailable__title">{t.unavailableTitle}</h2>
             <p className="unavailable__subtitle">{t.unavailableSubtitle}</p>
+            <div className="unavailable__action">
+              <button
+                type="button"
+                className={`retry-button${isRetrying ? ' retry-button--loading' : ''}`}
+                onClick={handleRetry}
+                disabled={isRetrying}
+              >
+                {isRetrying ? <span className="spinner" role="status" aria-label={t.loading} /> : t.retry}
+              </button>
+            </div>
           </div>
         ) : (
           <div className="unavailable__text-skeleton">

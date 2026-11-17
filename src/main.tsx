@@ -5,6 +5,7 @@ import { App } from './App';
 import { lockApp } from './shared/lib/lockApp';
 import './styles/global.css';
 import './styles/unavailable.css';
+import './styles/video.css';
 
 lockApp();
 

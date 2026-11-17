@@ -44,6 +44,52 @@
   gap: 10px;
 }
 
+/* Кнопка повтора: по ширине описания, акцентный цвет, невысокая. */
+.unavailable__action {
+  width: min(300px, 100%);
+  margin-top: 20px;
+}
+
+.retry-button {
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #000;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.retry-button--loading {
+  background: #3a3a3c;
+  color: #fff;
+  cursor: default;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Заглушка: светлее фона и мягко мигает. */
 .skeleton {
   background: rgba(255, 255, 255, 0.1);

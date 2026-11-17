@@ -8,10 +8,22 @@ export const strings = {
   ru: {
     unavailableTitle: 'Что ж ты будешь делать!',
     unavailableSubtitle: 'Похоже, по какой-то причине посмотреть видео сейчас не получится',
+    retry: 'Попытаться еще',
+    loading: 'Загрузка',
+    like: 'Нравится',
+    comment: 'Комментарии',
+    share: 'Поделиться',
+    creatorAvatar: 'Профиль автора',
   },
   en: {
     unavailableTitle: 'Oh well!',
     unavailableSubtitle: "Guess you can't watch it right now for some reason",
+    retry: 'Try again',
+    loading: 'Loading',
+    like: 'Like',
+    comment: 'Comments',
+    share: 'Share',
+    creatorAvatar: 'Creator profile',
   },
 } as const;
 

@@ -1,12 +1,13 @@
 import { Screen } from '../../shared/ui/Screen';
+import { VideoScreen } from '../video/VideoScreen';
 import { FeedUnavailable } from './ui/FeedUnavailable';
 
-// Лента открывается сразу. Пока видео не подключены, показываем экран
-// «не удалось получить видео». Когда появятся данные, здесь будет выбор состояния.
-export function FeedScreen() {
-  return (
-    <Screen>
-      <FeedUnavailable />
-    </Screen>
-  );
+interface FeedScreenProps {
+  // 'video' — показываем экран видео, 'unavailable' — экран «не получилось».
+  // Позже это значение будет приходить из данных ленты.
+  status: 'video' | 'unavailable';
+}
+
+export function FeedScreen({ status }: FeedScreenProps) {
+  return <Screen>{status === 'video' ? <VideoScreen /> : <FeedUnavailable />}</Screen>;
 }

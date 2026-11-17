@@ -5,6 +5,7 @@
   --color-bg: #000;
   --color-text: #fff;
   --color-muted: rgba(255, 255, 255, 0.45);
+  --color-accent: #b5ff29;
   --font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
   --space-gutter: 16px;
 }
