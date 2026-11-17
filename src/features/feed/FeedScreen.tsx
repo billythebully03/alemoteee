@@ -1,6 +1,4 @@
 import { Screen } from '../../shared/ui/Screen';
-import { SideMenuButton } from '../menu/SideMenuButton';
-import { RecordButton } from '../recorder/RecordButton';
 import { FeedUnavailable } from './ui/FeedUnavailable';
 
 // Лента открывается сразу. Пока видео не подключены, показываем экран
@@ -8,9 +6,7 @@ import { FeedUnavailable } from './ui/FeedUnavailable';
 export function FeedScreen() {
   return (
     <Screen>
-      <SideMenuButton />
       <FeedUnavailable />
-      <RecordButton />
     </Screen>
   );
 }

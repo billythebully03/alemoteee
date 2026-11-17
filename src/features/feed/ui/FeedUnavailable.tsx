@@ -11,6 +11,8 @@ const ANIMATION_LOADERS = [
   () => import('../../../assets/lottie/dog-sad.json'),
 ];
 
+const MEDIA_SIZE = 140;
+
 // Экран, когда видео получить не удалось: нет контента или нет соединения.
 export function FeedUnavailable() {
   const [index] = useState(() => Math.floor(Math.random() * ANIMATION_LOADERS.length));
@@ -33,10 +35,15 @@ export function FeedUnavailable() {
       <div className="unavailable__media">
         {isReady ? (
           <div className="fade-in">
-            <Lottie animationData={animation} loop autoplay style={{ width: 240, height: 240 }} />
+            <Lottie
+              animationData={animation}
+              loop
+              autoplay
+              style={{ width: MEDIA_SIZE, height: MEDIA_SIZE }}
+            />
           </div>
         ) : (
-          <Skeleton width={240} height={240} radius={24} />
+          <Skeleton width={MEDIA_SIZE} height={MEDIA_SIZE} radius={20} />
         )}
       </div>
 
@@ -48,9 +55,9 @@ export function FeedUnavailable() {
           </div>
         ) : (
           <div className="unavailable__text-skeleton">
-            <Skeleton width={200} height={24} radius={8} />
-            <Skeleton width={280} height={12} radius={6} />
-            <Skeleton width={220} height={12} radius={6} />
+            <Skeleton width={150} height={16} radius={6} />
+            <Skeleton width={290} height={14} radius={6} />
+            <Skeleton width={230} height={14} radius={6} />
           </div>
         )}
       </div>
